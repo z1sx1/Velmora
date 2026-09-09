@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Velmora Store — Source. Sell. Succeed.</title>
+<meta property="og:title" content="Velmora Store"/>
+<meta property="og:description" content="Velmora Store — a dropshipping storefront. Source, sell, and succeed with Velmora."/>
+<meta name="description" content="Velmora Store — official dropshipping storefront. No hidden charges, WhatsApp ordering, nationwide delivery."/>
+<meta name="theme-color" content="#0b1836"/>
+<meta name="background-color" content="#0b1836"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy-950:#060d1f;
+  --navy-900:#0b1836;
+  --navy-800:#132247;
+  --navy-700:#1c2f5c;
+  --line:rgba(255,255,255,0.12);
+  --line-strong:rgba(255,255,255,0.24);
+  --gold:#f2a900;
+  --gold-light:#ffd166;
+  --white:#ffffff;
+  --mist:rgba(255,255,255,0.66);
+  --mist-dim:rgba(255,255,255,0.42);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--navy-900);color:var(--white);overflow-x:hidden;line-height:1.5}
+::selection{background:var(--gold);color:var(--navy-950)}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* ── TOP STRIP ── */
+.topstrip{background:var(--gold);color:var(--navy-950);text-align:center;padding:0.55rem 1rem;font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em}
+.topstrip b{font-weight:700}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(6,13,31,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);gap:1rem}
+.brand{display:flex;align-items:center;gap:0.7rem;min-width:0}
+.brand-mark{width:38px;height:38px;border-radius:9px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.brand-mark svg{width:22px;height:22px}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:0.14em;white-space:nowrap}
+.brand-name span{color:var(--gold)}
+.nav-links{display:flex;gap:0.4rem}
+.nav-link{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);padding:0.4rem 0.85rem;border:1px solid transparent;border-radius:6px;text-decoration:none;transition:all .2s;white-space:nowrap}
+.nav-link:hover{color:var(--white);border-color:var(--line-strong)}
+.nav-cta{background:var(--gold);color:var(--navy-950);border:none;border-radius:6px;padding:0.62rem 1.25rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.76rem;letter-spacing:0.02em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;white-space:nowrap;transition:transform .2s,background .2s}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+@media(max-width:820px){.nav-links{display:none}}
+@media(max-width:520px){nav{padding:0.9rem 1.2rem}.brand-name{font-size:1.25rem}}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5.5rem 1.5rem 4.5rem;overflow:hidden}
+.hero-orbit{position:absolute;top:50%;left:50%;width:900px;height:900px;transform:translate(-50%,-52%);border:1px solid rgba(242,169,0,0.16);border-radius:50%;pointer-events:none}
+.hero-orbit::before{content:'';position:absolute;inset:70px;border:1px solid rgba(242,169,0,0.1);border-radius:50%}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold-light);border:1px solid rgba(242,169,0,0.4);border-radius:999px;padding:0.4rem 1.1rem;display:inline-block;margin-bottom:1.8rem;animation:fadeUp .6s ease both}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.6rem,10vw,7.5rem);line-height:0.92;letter-spacing:0.03em;margin-bottom:1.4rem;animation:fadeUp .6s .08s ease both;position:relative;z-index:1}
+.hero-title .gold{color:var(--gold)}
+.hero-sub{font-size:1.02rem;color:var(--mist);max-width:480px;line-height:1.75;margin:0 auto 2.4rem;font-weight:300;position:relative;z-index:1;animation:fadeUp .6s .16s ease both}
+.hero-cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;animation:fadeUp .6s .24s ease both}
+.btn-gold{background:var(--gold);color:var(--navy-950);border:none;border-radius:8px;padding:1rem 2.2rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:0.55rem}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 28px rgba(242,169,0,0.22)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid var(--line-strong);border-radius:8px;padding:1rem 2rem;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:0.86rem;cursor:pointer;transition:border-color .2s,background .2s;text-decoration:none}
+.btn-outline:hover{border-color:var(--gold);background:rgba(242,169,0,0.06)}
+.hero-note{margin-top:2.6rem;font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:var(--mist-dim);position:relative;z-index:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── DIVIDER ── */
+.sdiv{display:flex;align-items:center;gap:1.3rem;padding:0 3rem;margin:0.5rem 0 3.5rem}
+.sdiv-line{flex:1;height:1px;background:var(--line)}
+.sdiv-lbl{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist-dim);white-space:nowrap}
+
+/* ── PROCESS (Source / Sell / Succeed) ── */
+.process{padding:3rem 3rem 5rem}
+.sec-head{max-width:640px;margin:0 auto 3.2rem;text-align:center}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4.5vw,3.2rem);letter-spacing:0.04em;margin-bottom:0.9rem}
+.sec-title .gold{color:var(--gold)}
+.sec-desc{color:var(--mist);font-size:0.98rem;line-height:1.7;font-weight:300}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);max-width:1100px;margin:0 auto;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.pstep{background:var(--navy-800);padding:2.6rem 2.2rem;position:relative}
+.pstep-n{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:rgba(242,169,0,0.28);line-height:1;margin-bottom:1.2rem}
+.pstep h3{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:0.7rem}
+.pstep p{color:var(--mist);font-size:0.9rem;line-height:1.65;font-weight:300}
+@media(max-width:820px){.process-grid{grid-template-columns:1fr}}
+
+/* ── CATEGORIES (no products — just interest areas) ── */
+.categories{padding:1rem 3rem 5rem}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1200px;margin:0 auto}
+.cat-card{background:var(--navy-800);border:1px solid var(--line);border-radius:12px;padding:1.9rem 1.5rem;display:flex;flex-direction:column;gap:0.9rem;transition:border-color .2s,transform .2s}
+.cat-card:hover{border-color:rgba(242,169,0,0.45);transform:translateY(-3px)}
+.cat-icon{width:42px;height:42px;border-radius:10px;background:rgba(242,169,0,0.12);display:flex;align-items:center;justify-content:center}
+.cat-icon svg{width:22px;height:22px;stroke:var(--gold)}
+.cat-card h4{font-size:1rem;font-weight:700}
+.cat-card p{color:var(--mist-dim);font-size:0.82rem;line-height:1.55;font-weight:300}
+.cat-status{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);margin-top:0.2rem}
+@media(max-width:920px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cat-grid{grid-template-columns:1fr}}
+
+/* ── TRUST STRIP ── */
+.trust{background:var(--navy-950);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:3rem}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);max-width:1100px;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.trust-item{background:var(--navy-950);padding:1.6rem 1.4rem;text-align:center}
+.trust-item svg{width:24px;height:24px;stroke:var(--gold);margin-bottom:0.8rem}
+.trust-item h5{font-size:0.85rem;font-weight:700;margin-bottom:0.35rem}
+.trust-item p{font-size:0.75rem;color:var(--mist-dim);font-weight:300}
+@media(max-width:820px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── CTA BANNER ── */
+.cta-banner{margin:5rem 3rem;max-width:1100px;margin-left:auto;margin-right:auto;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));border:1px solid rgba(242,169,0,0.3);border-radius:18px;padding:3.2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;top:-40%;right:-10%;width:340px;height:340px;background:radial-gradient(circle,rgba(242,169,0,0.18),transparent 70%);pointer-events:none}
+.cta-banner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:0.03em;margin-bottom:0.9rem;position:relative}
+.cta-banner p{color:var(--mist);max-width:460px;margin:0 auto 1.8rem;font-size:0.95rem;font-weight:300;position:relative}
+.order-number{font-family:'Space Mono',monospace;font-size:0.95rem;letter-spacing:0.05em;color:var(--gold-light);background:rgba(242,169,0,0.1);border:1px solid rgba(242,169,0,0.3);border-radius:8px;padding:0.55rem 1.1rem;display:inline-block;margin-bottom:1.6rem;position:relative}
+
+/* ── FOOTER ── */
+footer{background:var(--navy-950);border-top:1px solid var(--line);padding:3.5rem 3rem 2rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;max-width:1100px;margin:0 auto 2.5rem}
+.footer-brand .brand{margin-bottom:0.9rem}
+.footer-brand p{color:var(--mist-dim);font-size:0.85rem;line-height:1.7;font-weight:300;max-width:300px}
+.footer-col h6{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--mist-dim);margin-bottom:1rem}
+.footer-col a{display:block;color:var(--mist);text-decoration:none;font-size:0.86rem;margin-bottom:0.7rem;transition:color .2s}
+.footer-col a:hover{color:var(--gold-light)}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:1.8rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.6rem;font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.06em;color:var(--mist-dim)}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr}}
+
+/* ── LIVE CATALOG ── */
+.catalog{padding:1rem 3rem 5rem}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.2rem;max-width:1200px;margin:0 auto}
+.catalog-empty{max-width:1200px;margin:0 auto;text-align:center;border:1px dashed var(--line-strong);border-radius:14px;padding:3.2rem 1.5rem;color:var(--mist-dim);font-size:0.9rem}
+.pcard{background:var(--navy-800);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s,border-color .2s}
+.pcard.visible{opacity:1;transform:translateY(0)}
+.pcard:hover{border-color:rgba(242,169,0,0.4)}
+.pcard-img{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--navy-700);cursor:zoom-in}
+.pcard-body{padding:1.1rem 1.1rem 1.3rem;display:flex;flex-direction:column;gap:0.6rem;flex:1}
+.pcard-name{font-weight:700;font-size:0.95rem;line-height:1.35}
+.pcard-desc{color:var(--mist-dim);font-size:0.8rem;line-height:1.5;flex:1}
+.pcard-price-row{display:flex;align-items:baseline;gap:0.55rem}
+.pcard-price{color:var(--gold-light);font-weight:700;font-size:1.05rem}
+.pcard-price-og{color:var(--mist-dim);font-size:0.82rem;text-decoration:line-through}
+.pcard-actions{display:flex;gap:0.5rem;margin-top:0.3rem}
+.pcard-actions .btn-gold{flex:1;padding:0.65rem 0.6rem;font-size:0.78rem;justify-content:center}
+.pcard-wa{width:40px;height:40px;flex-shrink:0;border:1px solid var(--line-strong);border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--white);transition:border-color .2s}
+.pcard-wa:hover{border-color:var(--gold)}
+.pcard-wa svg{width:18px;height:18px}
+
+/* ── ORDER / REVIEW MODALS ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(6,13,31,0.88);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.active{display:flex}
+.modal-box{background:var(--navy-800);border:1px solid var(--line-strong);border-radius:16px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.4rem;border-bottom:1px solid var(--line)}
+.modal-head h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.05em}
+.modal-close{background:none;border:1px solid var(--line-strong);color:var(--white);width:28px;height:28px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-body{padding:1.3rem 1.4rem}
+.f-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:0.9rem}
+.f-label{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist-dim)}
+.f-input,.f-textarea{width:100%;background:var(--navy-950);border:1px solid var(--line-strong);color:var(--white);padding:0.65rem 0.8rem;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:0.86rem;outline:none;transition:border-color .2s;resize:vertical}
+.f-input:focus,.f-textarea:focus{border-color:var(--gold)}
+.star-picker{display:flex;gap:0.3rem;font-size:1.6rem}
+.star-picker button{background:none;border:none;color:var(--line-strong);cursor:pointer;padding:0;line-height:1}
+.star-picker button.on{color:var(--gold)}
+
+.reviews{padding:1rem 3rem 5rem}
+.review-summary-row{display:flex;align-items:center;gap:1.1rem;max-width:1100px;margin:0 auto 1.8rem}
+.review-summary-num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--gold)}
+.review-stars{color:var(--gold);letter-spacing:0.08em}
+.review-list{max-width:1100px;margin:0 auto 2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.review-row{background:var(--navy-800);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem}
+.review-row-head{display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.3rem}
+.review-row-name{font-weight:700}
+.review-row-date{color:var(--mist-dim);font-size:0.72rem}
+.review-row-text{color:var(--mist);font-size:0.85rem;line-height:1.55;margin-top:0.4rem;font-weight:300}
+.review-empty{max-width:1100px;margin:0 auto 2rem;color:var(--mist-dim);font-size:0.88rem;text-align:center}
+.review-cta{max-width:1100px;margin:0 auto;text-align:center}
+
+/* ── ADMIN PANEL ── */
+.admin-trigger{background:none;border:none;color:inherit;cursor:pointer;font-size:0.62rem;font-family:'Space Mono',monospace;padding:2px 4px;user-select:none}
+.admin-trigger:hover{color:var(--gold-light)}
+.admin-overlay{position:fixed;inset:0;background:rgba(3,7,17,0.95);backdrop-filter:blur(10px);z-index:3000;display:none;align-items:center;justify-content:center;padding:1rem}
+.admin-overlay.active{display:flex}
+.admin-modal{background:var(--navy-950);border:1px solid var(--line-strong);border-radius:16px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto}
+.admin-head{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.3rem;border-bottom:1px solid var(--line)}
+.admin-head-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.08em}
+.admin-close{background:none;border:1px solid var(--line-strong);color:var(--white);width:28px;height:28px;border-radius:6px;cursor:pointer}
+.admin-body{padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:0.8rem}
+.admin-group{display:flex;flex-direction:column;gap:0.35rem}
+.admin-label{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist-dim)}
+.admin-input,.admin-textarea{width:100%;background:var(--navy-800);border:1px solid var(--line-strong);color:var(--white);padding:0.6rem 0.75rem;border-radius:7px;font-family:'Space Grotesk',sans-serif;font-size:0.84rem;outline:none;resize:vertical}
+.admin-input:focus,.admin-textarea:focus{border-color:var(--gold)}
+.admin-hint{font-family:'Space Mono',monospace;font-size:0.56rem;color:var(--mist-dim);letter-spacing:0.04em;line-height:1.4}
+.admin-spec-row{display:flex;gap:0.4rem}
+.admin-spec-row .admin-input:first-child{flex:0 0 36%}
+.admin-spec-row .admin-input:last-child{flex:1}
+.admin-pw-screen{padding:3rem 2rem;text-align:center}
+.admin-pw-title{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;letter-spacing:0.06em;margin-bottom:0.4rem}
+.admin-pw-sub{font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;color:var(--mist-dim);margin-bottom:2rem;text-transform:uppercase}
+.admin-pw-input{background:var(--navy-800);border:1px solid var(--line-strong);color:var(--white);padding:0.85rem 1.2rem;border-radius:8px;font-family:'Space Mono',monospace;font-size:1rem;outline:none;text-align:center;letter-spacing:0.3em;width:100%;max-width:260px}
+.admin-pw-input.wrong{border-color:#ff5555;animation:shake .3s ease}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.admin-pw-btn{margin-top:1rem;background:var(--gold);color:var(--navy-950);border:none;border-radius:8px;padding:0.75rem 2.5rem;font-weight:700;font-size:0.82rem;cursor:pointer}
+.admin-tabs{display:flex;border-bottom:1px solid var(--line)}
+.admin-tab{flex:1;padding:0.65rem 0.4rem;font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;background:none;border:none;color:var(--mist-dim);cursor:pointer;border-bottom:2px solid transparent}
+.admin-tab.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+.admin-tab-panel{display:none}
+.admin-tab-panel.active{display:flex;flex-direction:column;gap:0.75rem}
+.btn-add-product{background:var(--gold);color:var(--navy-950);border:none;border-radius:8px;padding:0.85rem;font-weight:700;font-size:0.85rem;cursor:pointer;width:100%}
+.btn-add-product:disabled{opacity:0.6;cursor:default}
+.admin-note{font-size:0.78rem;padding:0.6rem;text-align:center;border-radius:8px}
+.del-list{display:flex;flex-direction:column;gap:0.5rem;max-height:360px;overflow-y:auto}
+.del-item{display:flex;align-items:center;gap:0.7rem;background:var(--navy-800);border:1px solid var(--line);border-radius:10px;padding:0.6rem 0.7rem}
+.del-item-thumb{width:38px;height:38px;border-radius:6px;object-fit:cover;flex-shrink:0}
+.del-item-text{flex:1;min-width:0}
+.del-item-name{font-size:0.82rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.del-item-price{font-size:0.74rem;color:var(--mist-dim)}
+.btn-del-item{background:none;border:1px solid rgba(255,85,85,0.4);color:#ff8080;border-radius:6px;padding:0.4rem 0.7rem;font-size:0.72rem;cursor:pointer;flex-shrink:0}
+.del-empty{color:var(--mist-dim);font-size:0.82rem;text-align:center;padding:1.5rem 0}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:1.6rem;right:1.6rem;z-index:600;background:var(--gold);color:var(--navy-950);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,0.4);text-decoration:none;transition:transform .2s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:26px;height:26px}
+
+@media(max-width:600px){
+  .process{padding:2rem 1.2rem 3.5rem}
+  .categories{padding:1rem 1.2rem 3.5rem}
+  .sdiv{padding:0 1.2rem}
+  .cta-banner{margin:3.5rem 1.2rem}
+  footer{padding:3rem 1.2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="topstrip">Every order confirmed by hand on WhatsApp — <b>no hidden charges, ever.</b></div>
+
+<nav>
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#060d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+    </div>
+    <div class="brand-name">VEL<span>MORA</span></div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#process">How It Works</a>
+    <a class="nav-link" href="#categories">Categories</a>
+    <a class="nav-link" href="#trust">Why Velmora</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="#contact">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+    WhatsApp Us
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hero-orbit"></div>
+  <div class="hero-eyebrow">Velmora Store · Dropshipping</div>
+  <h1 class="hero-title">SOURCE. SELL.<br><span class="gold">SUCCEED.</span></h1>
+  <p class="hero-sub">Velmora is putting together a curated storefront — sourced, vetted, and shipped without the markup games. We're setting the shelves up right now, and orders open soon.</p>
+  <div class="hero-cta-row">
+    <a class="btn-gold" href="#contact">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+      Message Us on WhatsApp
+    </a>
+    <a class="btn-outline" href="#categories">Browse Categories</a>
+  </div>
+  <div class="hero-note">NO PRODUCTS LISTED YET — CATALOG LAUNCHING SOON</div>
+</section>
+
+<div class="sdiv"><div class="sdiv-line"></div><div class="sdiv-lbl">Live Catalog</div><div class="sdiv-line"></div></div>
+
+<section class="catalog" id="catalog">
+  <div class="sec-head">
+    <h2 class="sec-title">What's <span class="gold">in stock</span></h2>
+    <p class="sec-desc">Products added by the Velmora team appear here automatically — nothing is hardcoded.</p>
+  </div>
+  <div class="catalog-grid" id="catalogGrid"></div>
+  <div class="catalog-empty" id="catalogEmpty">No products listed yet — check back soon, or message us on WhatsApp for early access.</div>
+</section>
+
+<div class="sdiv"><div class="sdiv-line"></div><div class="sdiv-lbl">The Velmora Way</div><div class="sdiv-line"></div></div>
+
+<section class="process" id="process">
+  <div class="sec-head">
+    <h2 class="sec-title">Three steps. <span class="gold">Every time.</span></h2>
+    <p class="sec-desc">Velmora's whole model is built around the same loop, whether you're buying one item or building a business on top of us.</p>
+  </div>
+  <div class="process-grid">
+    <div class="pstep">
+      <div class="pstep-n">01</div>
+      <h3>Source</h3>
+      <p>We vet suppliers and pick items on quality and reliability first — not just whatever's cheapest to list.</p>
+    </div>
+    <div class="pstep">
+      <div class="pstep-n">02</div>
+      <h3>Sell</h3>
+      <p>A straightforward storefront with transparent pricing. What you see is what you pay — no surprise fees at checkout.</p>
+    </div>
+    <div class="pstep">
+      <div class="pstep-n">03</div>
+      <h3>Succeed</h3>
+      <p>Real WhatsApp support from order to delivery, so you're never chasing a bot for a status update.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"><div class="sdiv-line"></div><div class="sdiv-lbl">Coming to the Shelves</div><div class="sdiv-line"></div></div>
+
+<section class="categories" id="categories">
+  <div class="sec-head">
+    <h2 class="sec-title">Categories <span class="gold">we're building out</span></h2>
+    <p class="sec-desc">Nothing's listed yet — here's where we're focusing first. Tell us what you're after and we'll flag you the moment it lands.</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+      <h4>Home &amp; Living</h4>
+      <p>Everyday essentials for the house, picked for durability over gimmicks.</p>
+      <div class="cat-status">Sourcing in progress</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4M8 3v4M2 11h20"/></svg></div>
+      <h4>Tech &amp; Gadgets</h4>
+      <p>Accessories and small electronics that earn a spot on your desk.</p>
+      <div class="cat-status">Sourcing in progress</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 14.5 16 10l-1.5-6-4 1.5L6 10l-3.5 3.5"/><circle cx="12" cy="12" r="10"/></svg></div>
+      <h4>Fashion &amp; Accessories</h4>
+      <p>Simple, wearable pieces — not fast-fashion filler.</p>
+      <div class="cat-status">Sourcing in progress</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+      <h4>Wellness &amp; Fitness</h4>
+      <p>Practical gear for staying active, without the subscription upsell.</p>
+      <div class="cat-status">Sourcing in progress</div>
+    </div>
+  </div>
+</section>
+
+<section class="trust" id="trust">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+      <h5>No Hidden Charges</h5>
+      <p>Displayed price is the final price.</p>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="13" rx="2"/><path d="M16 10h3l4 4v5h-7"/><circle cx="6" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+      <h5>Nationwide Delivery</h5>
+      <p>We ship wherever the courier network reaches.</p>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+      <h5>Real Human Support</h5>
+      <p>Every order confirmed and tracked on WhatsApp.</p>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      <h5>Vetted Sourcing</h5>
+      <p>Suppliers checked before anything gets listed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"><div class="sdiv-line"></div><div class="sdiv-lbl">Customer Reviews</div><div class="sdiv-line"></div></div>
+
+<section class="reviews" id="reviews">
+  <div class="sec-head">
+    <h2 class="sec-title">What people <span class="gold">are saying</span></h2>
+    <p class="sec-desc">Real feedback, posted straight from visitors — moderated, never edited.</p>
+  </div>
+  <div id="reviewSummaryRow"></div>
+  <div class="review-list" id="reviewList"></div>
+  <div class="review-empty" id="reviewEmpty" style="display:none">No reviews yet — be the first to leave one.</div>
+  <div class="review-cta">
+    <button class="btn-outline" onclick="toggleReviewForm()">Leave a Review</button>
+    <div id="reviewFormWrap" style="display:none;max-width:420px;margin:1.5rem auto 0;text-align:left">
+      <div class="f-group">
+        <label class="f-label">Your Name</label>
+        <input class="f-input" id="revName" type="text" placeholder="e.g. Ayesha K."/>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Rating</label>
+        <div class="star-picker" id="starPicker"></div>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Your Review</label>
+        <textarea class="f-textarea" id="revText" rows="3" placeholder="How was your experience?"></textarea>
+      </div>
+      <button class="btn-gold" style="width:100%;justify-content:center" onclick="submitReview()">Submit Review</button>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner" id="contact">
+  <h2>Want to be first in line?</h2>
+  <p>The catalog isn't live yet, but you can reach us directly — ask about a category, get notified at launch, or just say hello.</p>
+  <div class="order-number">📞 0311&nbsp;246&nbsp;1722</div>
+  <div>
+    <a class="btn-gold" href="https://wa.me/923112461722?text=Hi%20Velmora%20Store%2C%20I%27d%20like%20to%20get%20in%20touch." target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+      Chat With Velmora
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#060d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+        </div>
+        <div class="brand-name">VEL<span>MORA</span></div>
+      </div>
+      <p>A dropshipping storefront built around three words: source, sell, succeed. Catalog launching soon.</p>
+    </div>
+    <div class="footer-col">
+      <h6>Explore</h6>
+      <a href="#process">How It Works</a>
+      <a href="#categories">Categories</a>
+      <a href="#trust">Why Velmora</a>
+    </div>
+    <div class="footer-col">
+      <h6>Get In Touch</h6>
+      <a href="https://wa.me/923112461722" target="_blank" rel="noopener">WhatsApp: 0311 246 1722</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><button class="admin-trigger" onclick="openAdminPanel()">©</button> 2026 VELMORA STORE. ALL RIGHTS RESERVED.</span>
+    <span>SOURCE · SELL · SUCCEED</span>
+  </div>
+</footer>
+
+<!-- ═══ ORDER MODAL ═══ -->
+<div class="modal-overlay" id="orderOverlay" onclick="if(event.target===this)closeOrderModal()">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Place Order</h3>
+      <button class="modal-close" onclick="closeOrderModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="f-group"><label class="f-label">Product</label><input class="f-input" id="ord-product" readonly/></div>
+      <div class="f-group"><label class="f-label">Full Name</label><input class="f-input" id="ord-name" placeholder="Your name"/></div>
+      <div class="f-group"><label class="f-label">Phone Number</label><input class="f-input" id="ord-phone" placeholder="03XX-XXXXXXX"/></div>
+      <div class="f-group"><label class="f-label">Delivery Address</label><textarea class="f-textarea" id="ord-address" rows="2" placeholder="Full address, city"/></textarea></div>
+      <div class="f-group"><label class="f-label">Quantity</label><input class="f-input" id="ord-qty" type="number" min="1" value="1"/></div>
+      <button class="btn-gold" style="width:100%;justify-content:center" onclick="sendOrderToWhatsApp()">Confirm via WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ IMAGE ZOOM ═══ -->
+<div class="modal-overlay" id="zoomOverlay" onclick="closeZoom()">
+  <img id="zoomImg" src="" style="max-width:92vw;max-height:92vh;border-radius:12px" onclick="event.stopPropagation()"/>
+</div>
+
+<!-- ═══ ADMIN PANEL ═══ -->
+<div class="admin-overlay" id="adminOverlay" onclick="if(event.target===this)closeAdminPanel()">
+  <div class="admin-modal">
+
+    <div id="adminPwScreen" class="admin-pw-screen">
+      <div class="admin-pw-title">Admin Access</div>
+      <div class="admin-pw-sub">Velmora Store · Owner Only</div>
+      <input class="admin-pw-input" id="adminPwInput" type="password" placeholder="••••••••" maxlength="32" onkeydown="if(event.key==='Enter')checkAdminPw()"/>
+      <br/>
+      <button class="admin-pw-btn" onclick="checkAdminPw()">Unlock</button>
+    </div>
+
+    <div id="adminMainPanel" style="display:none">
+      <div class="admin-head">
+        <span class="admin-head-title">Admin Panel</span>
+        <button class="admin-close" onclick="closeAdminPanel()">✕</button>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="add" onclick="switchAdminTab('add')">+ Add Product</button>
+        <button class="admin-tab" data-tab="delete" onclick="switchAdminTab('delete')">🗑 Manage</button>
+        <button class="admin-tab" data-tab="reviews" onclick="switchAdminTab('reviews')">★ Reviews</button>
+      </div>
+
+      <div class="admin-body">
+        <div id="tab-add" class="admin-tab-panel active">
+          <div class="admin-note" id="githubWarn" style="background:rgba(255,85,85,0.12);border:1px solid rgba(255,85,85,0.35);color:#ff9d9d;display:none">
+            Not connected to GitHub yet — see the GITHUB_OWNER / GITHUB_REPO / GITHUB_TOKEN config at the top of the script.
+          </div>
+
+          <div class="admin-group">
+            <label class="admin-label">Product ID *</label>
+            <input class="admin-input" id="ap-id" type="text" placeholder="unique-id-no-spaces"/>
+            <div class="admin-hint">Lowercase letters, numbers, hyphens only — e.g. 'desk-lamp'</div>
+          </div>
+          <div class="admin-group">
+            <label class="admin-label">Product Name *</label>
+            <input class="admin-input" id="ap-name" type="text" placeholder="e.g. Foldable Desk Lamp"/>
+          </div>
+          <div class="admin-group">
+            <label class="admin-label">Description *</label>
+            <textarea class="admin-input admin-textarea" id="ap-desc" rows="3" placeholder="Short product description…"></textarea>
+          </div>
+          <div class="admin-group">
+            <label class="admin-label">Product Details (optional)</label>
+            <div class="admin-spec-row"><input class="admin-input" id="spec-k-1" placeholder="Label e.g. Material"/><input class="admin-input" id="spec-v-1" placeholder="Value"/></div>
+            <div class="admin-spec-row"><input class="admin-input" id="spec-k-2" placeholder="Label"/><input class="admin-input" id="spec-v-2" placeholder="Value"/></div>
+            <div class="admin-spec-row"><input class="admin-input" id="spec-k-3" placeholder="Label"/><input class="admin-input" id="spec-v-3" placeholder="Value"/></div>
+            <div class="admin-spec-row"><input class="admin-input" id="spec-k-4" placeholder="Label"/><input class="admin-input" id="spec-v-4" placeholder="Value"/></div>
+            <div class="admin-hint">Leave rows blank to skip</div>
+          </div>
+          <div class="admin-group">
+            <label class="admin-label">Real Price (Rs.) *</label>
+            <input class="admin-input" id="ap-price" type="number" placeholder="e.g. 1299"/>
+          </div>
+          <div class="admin-group">
+            <label class="admin-label">Discount Price (Rs.)</label>
+            <input class="admin-input" id="ap-discount" type="number" placeholder="Leave blank for no discount"/>
+          </div>
+          <div class="admin-group">
+            <label class="admin-label">Image Links</label>
+            <input class="admin-input" id="img-1" type="url" placeholder="Main image URL (required)" style="margin-bottom:0.4rem"/>
+            <input class="admin-input" id="img-2" type="url" placeholder="Thumbnail 2 (optional)" style="margin-bottom:0.4rem"/>
+            <input class="admin-input" id="img-3" type="url" placeholder="Thumbnail 3 (optional)"/>
+            <div class="admin-hint">Paste hosted image links (e.g. postimg.cc)</div>
+          </div>
+          <button class="btn-add-product" id="btn-add-product" onclick="addProduct()">+ Add Product to Store</button>
+        </div>
+
+        <div id="tab-delete" class="admin-tab-panel">
+          <div class="del-list" id="del-product-list"></div>
+        </div>
+
+        <div id="tab-reviews" class="admin-tab-panel">
+          <div class="del-list" id="admin-review-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="wa-float" href="https://wa.me/923112461722?text=Hi%20Velmora%20Store%2C%20I%27d%20like%20to%20get%20in%20touch." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+</a>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   GITHUB CONFIG — REQUIRED BEFORE THE CATALOG/ADMIN PANEL WORK
+   Products and reviews are stored as JSON files in a GitHub repo you own.
+
+   1. Create a PUBLIC GitHub repo (public, so customer-facing reads work
+      with no token). Inside it, create two files with empty arrays:
+        data/products.json   → []
+        data/reviews.json    → []
+
+   2. Fill in the four values below:
+        GITHUB_OWNER  → your GitHub username or org
+        GITHUB_REPO   → the repo name
+        GITHUB_BRANCH → usually 'main'
+        GITHUB_TOKEN  → a Personal Access Token (see step 3)
+
+   3. Create the token at https://github.com/settings/tokens?type=beta
+      → "Fine-grained tokens" → New token
+      → Repository access: ONLY this one repo (not "all repos")
+      → Permissions: Contents → Read and write. Nothing else.
+      → Set an expiration date and re-issue it when it lapses.
+
+   ⚠️ SECURITY WARNING — READ THIS BEFORE PUBLISHING:
+   This is a static HTML page with no server, so this token has to live in
+   the JavaScript that ships to every visitor's browser. Anyone who opens
+   your page's source or the browser dev tools can copy this token out and
+   use it to write or delete files in whatever repo it's scoped to. Unlike
+   a Supabase anon key, a GitHub token is not designed to be made public.
+
+   Keep the blast radius small:
+   - Scope the token to this ONE repo only, with Contents permission only.
+   - Never use a classic token with broad account/org access here.
+   - Put NOTHING else of value in this repo.
+   - If you ever suspect the token leaked, revoke it immediately at
+     https://github.com/settings/tokens and issue a new one.
+   - The admin password below is a UI convenience, not real access control
+     — it hides the button, it does not stop someone who has the token.
+   ══════════════════════════════════════════════════════════════ */
+const GITHUB_OWNER  = 'z1sx1';   // e.g. 'yourusername'
+const GITHUB_REPO   = 'Velmora'; // e.g. 'velmora-store-data'
+const GITHUB_BRANCH = 'main';
+const GITHUB_TOKEN  = '';   // fine-grained PAT, Contents: read/write, this repo only
+
+const PRODUCTS_PATH = 'data/products.json';
+const REVIEWS_PATH  = 'data/reviews.json';
+
+function ghReady() { return !!(GITHUB_OWNER && GITHUB_REPO && GITHUB_TOKEN); }
+function ghRawUrl(path) { return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${path}?t=${Date.now()}`; }
+function ghApiUrl(path) { return `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`; }
+function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
+function b64DecodeUnicode(str) { return decodeURIComponent(escape(atob(str))); }
+
+// Public, unauthenticated read — works with no token as long as the repo is public.
+async function ghReadPublic(path) {
+  try {
+    const res = await fetch(ghRawUrl(path), { cache: 'no-store' });
+    if (!res.ok) return [];
+    return await res.json();
+  } catch (e) { console.error('GitHub read failed:', e); return []; }
+}
+
+// Authenticated read+sha — needed before any write, so we can PUT with the right sha.
+async function ghReadForWrite(path) {
+  const res = await fetch(ghApiUrl(path), { headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github+json' } });
+  if (res.status === 404) return { sha: null, data: [] };
+  if (!res.ok) throw new Error('GitHub read failed (' + res.status + ')');
+  const json = await res.json();
+  const data = JSON.parse(b64DecodeUnicode(json.content.replace(/\n/g, '')));
+  return { sha: json.sha, data };
+}
+
+// Authenticated write — commits the full updated array back to the file.
+async function ghWrite(path, data, sha, message) {
+  const res = await fetch(ghApiUrl(path).split('?')[0], {
+    method: 'PUT',
+    headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message,
+      content: b64EncodeUnicode(JSON.stringify(data, null, 2)),
+      branch: GITHUB_BRANCH,
+      ...(sha ? { sha } : {})
+    })
+  });
+  if (!res.ok) { const j = await res.json().catch(() => ({})); throw new Error(j.message || 'GitHub write failed (' + res.status + ')'); }
+}
+
+// ── ADMIN PASSWORD — CHANGE THIS BEFORE PUBLISHING ──
+// Client-side only: visible to anyone who views page source. Do not reuse
+// this exact value and do not treat it as real security.
+const ADMIN_PASSWORD = 'robeel8888';
+
+const WA_NUMBER = '923112461722'; // 0311 246 1722
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str == null ? '' : String(str);
+  return d.innerHTML;
+}
+
+/* ── CATALOG (public) ── */
+async function loadCatalog() {
+  const grid = document.getElementById('catalogGrid');
+  const empty = document.getElementById('catalogEmpty');
+  if (!GITHUB_OWNER || !GITHUB_REPO) { empty.style.display = 'block'; return; }
+  const data = await ghReadPublic(PRODUCTS_PATH);
+  if (!data || !data.length) { empty.style.display = 'block'; grid.innerHTML = ''; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = data.map(p => renderProductCard(p)).join('');
+  requestAnimationFrame(() => document.querySelectorAll('.pcard').forEach((c,i) => setTimeout(() => c.classList.add('visible'), i*60)));
+}
+
+function renderProductCard(p) {
+  const img = (p.images && p.images[0]) || '';
+  const hasDiscount = p.discount_price && p.discount_price > 0 && p.discount_price < p.price;
+  const shown = hasDiscount ? p.discount_price : p.price;
+  const waText = encodeURIComponent(`Hi Velmora Store, I'm interested in "${p.name}" (Rs. ${shown}).`);
+  return `
+    <div class="pcard" id="prod-${escapeHtml(p.id)}">
+      ${img ? `<img class="pcard-img" src="${escapeHtml(img)}" alt="${escapeHtml(p.name)}" onclick="openZoom('${escapeHtml(img)}')" onerror="this.style.display='none'"/>` : ''}
+      <div class="pcard-body">
+        <div class="pcard-name">${escapeHtml(p.name)}</div>
+        <div class="pcard-desc">${escapeHtml(p.description || '')}</div>
+        <div class="pcard-price-row">
+          <span class="pcard-price">Rs. ${Number(shown).toLocaleString('en-PK')}</span>
+          ${hasDiscount ? `<span class="pcard-price-og">Rs. ${Number(p.price).toLocaleString('en-PK')}</span>` : ''}
+        </div>
+        <div class="pcard-actions">
+          <button class="btn-gold" onclick="openOrderModal('${escapeHtml(p.id)}','${escapeHtml(p.name).replace(/'/g,"\\'")}',${shown})">Order Now</button>
+          <a class="pcard-wa" href="https://wa.me/${WA_NUMBER}?text=${waText}" target="_blank" rel="noopener" title="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>`;
+}
+
+function openZoom(src) {
+  document.getElementById('zoomImg').src = src;
+  document.getElementById('zoomOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeZoom() {
+  document.getElementById('zoomOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+/* ── ORDER MODAL ── */
+let currentOrder = null;
+function openOrderModal(id, name, price) {
+  currentOrder = { id, name, price };
+  document.getElementById('ord-product').value = `${name} — Rs. ${Number(price).toLocaleString('en-PK')}`;
+  document.getElementById('ord-name').value = '';
+  document.getElementById('ord-phone').value = '';
+  document.getElementById('ord-address').value = '';
+  document.getElementById('ord-qty').value = 1;
+  document.getElementById('orderOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeOrderModal() {
+  document.getElementById('orderOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function sendOrderToWhatsApp() {
+  const name = document.getElementById('ord-name').value.trim();
+  const phone = document.getElementById('ord-phone').value.trim();
+  const address = document.getElementById('ord-address').value.trim();
+  const qty = document.getElementById('ord-qty').value.trim() || '1';
+  if (!name || !phone || !address) { alert('Please fill in your name, phone, and address.'); return; }
+  const msg = `New Order — Velmora Store\nProduct: ${currentOrder.name}\nPrice: Rs. ${currentOrder.price}\nQty: ${qty}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  closeOrderModal();
+}
+
+/* ── REVIEWS (public, site-wide) ── */
+let selectedStars = 0;
+function buildStarPicker() {
+  selectedStars = 0;
+  document.getElementById('starPicker').innerHTML = [1,2,3,4,5].map(n => `<button type="button" onclick="pickStar(${n})">★</button>`).join('');
+}
+function pickStar(n) {
+  selectedStars = n;
+  document.querySelectorAll('#starPicker button').forEach((b,i) => b.classList.toggle('on', i < n));
+}
+function toggleReviewForm() {
+  const wrap = document.getElementById('reviewFormWrap');
+  const show = wrap.style.display === 'none';
+  wrap.style.display = show ? 'block' : 'none';
+  if (show) buildStarPicker();
+}
+async function loadReviews() {
+  const list = document.getElementById('reviewList');
+  const empty = document.getElementById('reviewEmpty');
+  const summary = document.getElementById('reviewSummaryRow');
+  if (!GITHUB_OWNER || !GITHUB_REPO) { empty.style.display = 'block'; return; }
+  const data = await ghReadPublic(REVIEWS_PATH);
+  if (!data || !data.length) { empty.style.display = 'block'; list.innerHTML = ''; summary.innerHTML = ''; return; }
+  data.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  empty.style.display = 'none';
+  const avg = data.reduce((s,r) => s + r.rating, 0) / data.length;
+  summary.innerHTML = `<div class="review-summary-row"><div class="review-summary-num">${avg.toFixed(1)}</div><div><div class="review-stars">${'★'.repeat(Math.round(avg))}${'☆'.repeat(5-Math.round(avg))}</div><div style="color:var(--mist-dim);font-size:0.8rem">${data.length} review${data.length===1?'':'s'}</div></div></div>`;
+  list.innerHTML = data.map(r => `
+    <div class="review-row">
+      <div class="review-row-head"><span class="review-row-name">${escapeHtml(r.name)}</span><span class="review-row-date">${new Date(r.created_at).toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'})}</span></div>
+      <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+      <div class="review-row-text">${escapeHtml(r.text)}</div>
+    </div>`).join('');
+}
+async function submitReview() {
+  const name = document.getElementById('revName').value.trim();
+  const text = document.getElementById('revText').value.trim();
+  if (!name || !text || selectedStars === 0) { alert('Please add your name, a star rating, and your review.'); return; }
+  if (!ghReady()) { alert('Reviews aren\'t connected yet — add your GitHub config in the code.'); return; }
+  try {
+    const { sha, data } = await ghReadForWrite(REVIEWS_PATH);
+    data.push({ id: 'r-' + Date.now(), name, rating: selectedStars, text, created_at: new Date().toISOString() });
+    await ghWrite(REVIEWS_PATH, data, sha, `Add review from ${name}`);
+  } catch (e) { alert('Failed to submit review: ' + e.message); return; }
+  document.getElementById('revName').value = '';
+  document.getElementById('revText').value = '';
+  document.getElementById('reviewFormWrap').style.display = 'none';
+  loadReviews();
+}
+
+/* ── ADMIN PANEL ── */
+function openAdminPanel() {
+  document.getElementById('adminPwScreen').style.display = 'block';
+  document.getElementById('adminMainPanel').style.display = 'none';
+  document.getElementById('adminPwInput').value = '';
+  document.getElementById('adminOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('adminPwInput').focus(), 100);
+}
+function closeAdminPanel() {
+  document.getElementById('adminOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function checkAdminPw() {
+  const inp = document.getElementById('adminPwInput');
+  if (inp.value === ADMIN_PASSWORD) {
+    document.getElementById('adminPwScreen').style.display = 'none';
+    document.getElementById('adminMainPanel').style.display = 'block';
+    document.getElementById('githubWarn').style.display = ghReady() ? 'none' : 'block';
+  } else {
+    inp.classList.add('wrong');
+    inp.value = '';
+    setTimeout(() => inp.classList.remove('wrong'), 400);
+  }
+}
+function switchAdminTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  if (tab === 'delete') renderDeleteList();
+  if (tab === 'reviews') renderAdminReviewsList();
+}
+
+async function addProduct() {
+  const id = document.getElementById('ap-id').value.trim();
+  const name = document.getElementById('ap-name').value.trim();
+  const desc = document.getElementById('ap-desc').value.trim();
+  const price = document.getElementById('ap-price').value.trim();
+  const discount = document.getElementById('ap-discount').value.trim();
+  const images = ['img-1','img-2','img-3'].map(i => document.getElementById(i).value.trim()).filter(Boolean);
+  const specs = [1,2,3,4].map(i => ({ k: document.getElementById('spec-k-'+i).value.trim(), v: document.getElementById('spec-v-'+i).value.trim() })).filter(s => s.k && s.v);
+
+  if (!id || !name || !desc || !price || !images[0]) { alert('Please fill in Product ID, Name, Description, Price, and at least one image.'); return; }
+  if (!ghReady()) { alert('Not connected to GitHub yet — add your owner/repo/token in the config at the top of the script.'); return; }
+
+  const btn = document.getElementById('btn-add-product');
+  btn.disabled = true; btn.textContent = 'Publishing…';
+
+  try {
+    const { sha, data } = await ghReadForWrite(PRODUCTS_PATH);
+    if (data.some(p => p.id === id)) { alert('A product with this ID already exists — pick a different ID.'); btn.disabled = false; btn.textContent = '+ Add Product to Store'; return; }
+    data.push({ id, name, description: desc, price: parseInt(price), discount_price: discount ? parseInt(discount) : null, images, specs, created_at: new Date().toISOString() });
+    await ghWrite(PRODUCTS_PATH, data, sha, `Add product: ${name}`);
+  } catch (e) {
+    btn.disabled = false; btn.textContent = '+ Add Product to Store';
+    alert('Failed to save: ' + e.message); return;
+  }
+
+  btn.disabled = false; btn.textContent = '+ Add Product to Store';
+  ['ap-id','ap-name','ap-desc','ap-price','ap-discount','img-1','img-2','img-3','spec-k-1','spec-v-1','spec-k-2','spec-v-2','spec-k-3','spec-v-3','spec-k-4','spec-v-4'].forEach(f => document.getElementById(f).value = '');
+  loadCatalog();
+  closeAdminPanel();
+}
+
+async function renderDeleteList() {
+  const list = document.getElementById('del-product-list');
+  if (!ghReady()) { list.innerHTML = '<div class="del-empty">Not connected to GitHub yet.</div>'; return; }
+  list.innerHTML = '<div class="del-empty">Loading…</div>';
+  let data;
+  try { ({ data } = await ghReadForWrite(PRODUCTS_PATH)); }
+  catch (e) { list.innerHTML = '<div class="del-empty">Failed to load products.</div>'; return; }
+  if (!data.length) { list.innerHTML = '<div class="del-empty">No products yet.</div>'; return; }
+  list.innerHTML = data.map(p => `
+    <div class="del-item" id="del-row-${escapeHtml(p.id)}">
+      ${p.images && p.images[0] ? `<img class="del-item-thumb" src="${escapeHtml(p.images[0])}" onerror="this.style.display='none'"/>` : ''}
+      <div class="del-item-text"><div class="del-item-name">${escapeHtml(p.name)}</div><div class="del-item-price">Rs. ${Number(p.price).toLocaleString('en-PK')}</div></div>
+      <button class="btn-del-item" onclick="deleteProduct('${escapeHtml(p.id)}')">Delete</button>
+    </div>`).join('');
+}
+async function deleteProduct(id) {
+  if (!confirm('Delete this product from the store?')) return;
+  try {
+    const { sha, data } = await ghReadForWrite(PRODUCTS_PATH);
+    const filtered = data.filter(p => p.id !== id);
+    await ghWrite(PRODUCTS_PATH, filtered, sha, `Delete product: ${id}`);
+  } catch (e) { alert('Delete failed: ' + e.message); return; }
+  renderDeleteList();
+  loadCatalog();
+}
+
+async function renderAdminReviewsList() {
+  const list = document.getElementById('admin-review-list');
+  if (!ghReady()) { list.innerHTML = '<div class="del-empty">Not connected to GitHub yet.</div>'; return; }
+  list.innerHTML = '<div class="del-empty">Loading…</div>';
+  let data;
+  try { ({ data } = await ghReadForWrite(REVIEWS_PATH)); }
+  catch (e) { list.innerHTML = '<div class="del-empty">Failed to load reviews.</div>'; return; }
+  data.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  if (!data.length) { list.innerHTML = '<div class="del-empty">No reviews yet.</div>'; return; }
+  list.innerHTML = data.map(r => `
+    <div class="del-item" id="rev-row-${r.id}" style="flex-direction:column;align-items:stretch;gap:0.4rem">
+      <div style="display:flex;justify-content:space-between;gap:0.6rem">
+        <div><div class="del-item-name">${escapeHtml(r.name)} · ${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+        <div class="del-item-price">${new Date(r.created_at).toLocaleDateString('en-PK',{day:'numeric',month:'short',year:'numeric'})}</div></div>
+        <button class="btn-del-item" onclick="deleteReview('${r.id}')">Delete</button>
+      </div>
+      <div style="font-size:0.8rem;color:var(--mist);line-height:1.5">${escapeHtml(r.text)}</div>
+    </div>`).join('');
+}
+async function deleteReview(id) {
+  if (!confirm('Delete this review?')) return;
+  try {
+    const { sha, data } = await ghReadForWrite(REVIEWS_PATH);
+    const filtered = data.filter(r => r.id !== id);
+    await ghWrite(REVIEWS_PATH, filtered, sha, `Delete review: ${id}`);
+  } catch (e) { alert('Delete failed: ' + e.message); return; }
+  renderAdminReviewsList();
+}
+
+/* ── INIT ── */
+loadCatalog();
+loadReviews();
+</script>
+</body>
+</html>
