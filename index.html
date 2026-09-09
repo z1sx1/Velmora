@@ -390,7 +390,7 @@ footer{background:var(--navy-950);border-top:1px solid var(--line);padding:3.5re
         <label class="f-label">Your Review</label>
         <textarea class="f-textarea" id="revText" rows="3" placeholder="How was your experience?"></textarea>
       </div>
-      <button class="btn-gold" style="width:100%;justify-content:center" onclick="submitReview()">Submit Review</button>
+      <button class="btn-gold" style="width:100%;justify-content:center" onclick="submitReview()">Send Review via WhatsApp</button>
     </div>
   </div>
 </section>
@@ -466,7 +466,10 @@ footer{background:var(--navy-950);border-top:1px solid var(--line);padding:3.5re
     <div id="adminPwScreen" class="admin-pw-screen">
       <div class="admin-pw-title">Admin Access</div>
       <div class="admin-pw-sub">Velmora Store · Owner Only</div>
-      <input class="admin-pw-input" id="adminPwInput" type="password" placeholder="••••••••" maxlength="32" onkeydown="if(event.key==='Enter')checkAdminPw()"/>
+      <input class="admin-pw-input" id="adminPwInput" type="password" placeholder="Password" maxlength="32" onkeydown="if(event.key==='Enter')document.getElementById('adminTokenInput').focus()"/>
+      <br/>
+      <input class="admin-pw-input" id="adminTokenInput" type="password" placeholder="GitHub token" maxlength="200" style="letter-spacing:0.04em;font-size:0.72rem;margin-top:0.7rem" onkeydown="if(event.key==='Enter')checkAdminPw()"/>
+      <div class="admin-hint" style="margin-top:0.6rem;max-width:260px;margin-left:auto;margin-right:auto">Leave blank if you only need to view — the token is only required to add/delete products or reviews. It's kept in this browser tab only, never saved to the site.</div>
       <br/>
       <button class="admin-pw-btn" onclick="checkAdminPw()">Unlock</button>
     </div>
@@ -486,7 +489,7 @@ footer{background:var(--navy-950);border-top:1px solid var(--line);padding:3.5re
       <div class="admin-body">
         <div id="tab-add" class="admin-tab-panel active">
           <div class="admin-note" id="githubWarn" style="background:rgba(255,85,85,0.12);border:1px solid rgba(255,85,85,0.35);color:#ff9d9d;display:none">
-            Not connected to GitHub yet — see the GITHUB_OWNER / GITHUB_REPO / GITHUB_TOKEN config at the top of the script.
+            No GitHub token entered for this session — go back and re-unlock with your token to add or delete anything.
           </div>
 
           <div class="admin-group">
@@ -533,7 +536,14 @@ footer{background:var(--navy-950);border-top:1px solid var(--line);padding:3.5re
         </div>
 
         <div id="tab-reviews" class="admin-tab-panel">
-          <div class="del-list" id="admin-review-list"></div>
+          <div class="admin-group">
+            <label class="admin-label">Add a review received via WhatsApp</label>
+            <input class="admin-input" id="adm-rev-name" placeholder="Customer name" style="margin-bottom:0.4rem"/>
+            <div class="star-picker" id="admStarPicker" style="margin-bottom:0.4rem"></div>
+            <textarea class="admin-input admin-textarea" id="adm-rev-text" rows="2" placeholder="Review text"></textarea>
+          </div>
+          <button class="btn-add-product" onclick="adminAddReview()">+ Post Review</button>
+          <div class="del-list" id="admin-review-list" style="margin-top:0.8rem"></div>
         </div>
       </div>
     </div>
@@ -549,48 +559,53 @@ footer{background:var(--navy-950);border-top:1px solid var(--line);padding:3.5re
    GITHUB CONFIG — REQUIRED BEFORE THE CATALOG/ADMIN PANEL WORK
    Products and reviews are stored as JSON files in a GitHub repo you own.
 
-   1. Create a PUBLIC GitHub repo (public, so customer-facing reads work
-      with no token). Inside it, create two files with empty arrays:
+   1. Create a PUBLIC GitHub repo. Inside it, create two files:
         data/products.json   → []
         data/reviews.json    → []
 
-   2. Fill in the four values below:
+   2. Fill in the three values below (these are NOT secret — just names):
         GITHUB_OWNER  → your GitHub username or org
         GITHUB_REPO   → the repo name
         GITHUB_BRANCH → usually 'main'
-        GITHUB_TOKEN  → a Personal Access Token (see step 3)
 
-   3. Create the token at https://github.com/settings/tokens?type=beta
-      → "Fine-grained tokens" → New token
-      → Repository access: ONLY this one repo (not "all repos")
-      → Permissions: Contents → Read and write. Nothing else.
-      → Set an expiration date and re-issue it when it lapses.
-
-   ⚠️ SECURITY WARNING — READ THIS BEFORE PUBLISHING:
-   This is a static HTML page with no server, so this token has to live in
-   the JavaScript that ships to every visitor's browser. Anyone who opens
-   your page's source or the browser dev tools can copy this token out and
-   use it to write or delete files in whatever repo it's scoped to. Unlike
-   a Supabase anon key, a GitHub token is not designed to be made public.
-
-   Keep the blast radius small:
-   - Scope the token to this ONE repo only, with Contents permission only.
-   - Never use a classic token with broad account/org access here.
-   - Put NOTHING else of value in this repo.
-   - If you ever suspect the token leaked, revoke it immediately at
-     https://github.com/settings/tokens and issue a new one.
-   - The admin password below is a UI convenience, not real access control
-     — it hides the button, it does not stop someone who has the token.
+   3. Do NOT put a token here. See "ADMIN TOKEN" note below for why, and
+      how it works instead.
    ══════════════════════════════════════════════════════════════ */
 const GITHUB_OWNER  = 'z1sx1';   // e.g. 'yourusername'
 const GITHUB_REPO   = 'Velmora'; // e.g. 'velmora-store-data'
 const GITHUB_BRANCH = 'main';
-const GITHUB_TOKEN  = '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';   // fine-grained PAT, Contents: read/write, this repo only
 
 const PRODUCTS_PATH = 'data/products.json';
 const REVIEWS_PATH  = 'data/reviews.json';
 
-function ghReady() { return !!(GITHUB_OWNER && GITHUB_REPO && GITHUB_TOKEN); }
+/* ══════════════════════════════════════════════════════════════
+   ADMIN TOKEN — ENTERED PER SESSION, NEVER SAVED IN THIS FILE
+
+   GitHub automatically scans every commit for live tokens and revokes
+   any it finds — this isn't a bug, it's GitHub protecting you. That
+   means a token typed into this file and committed to the repo WILL be
+   killed immediately, every time, no matter how it's scoped.
+
+   So instead: you paste your token into the admin panel itself, each
+   time you open it on a given device/browser. It's held only in this
+   tab's sessionStorage — cleared the moment you close the tab — and is
+   never written back into index.html or committed anywhere.
+
+   Create the token at https://github.com/settings/tokens?type=beta
+   → "Fine-grained tokens" → New token
+   → Repository access: ONLY z1sx1/Velmora (not "all repos")
+   → Permissions: Contents → Read and write. Nothing else.
+   → Set an expiration date; re-issue and re-paste it when it lapses.
+
+   Because it's typed in at runtime rather than committed, it still sits
+   in this browser tab's memory while you're using the panel — someone
+   with physical/dev-tools access to that specific browser session could
+   still read it there. It just won't leak through the published site's
+   source code or git history the way a hardcoded value would.
+   ══════════════════════════════════════════════════════════════ */
+let sessionGithubToken = sessionStorage.getItem('velmora_gh_token') || '';
+
+function ghReady() { return !!(GITHUB_OWNER && GITHUB_REPO && sessionGithubToken); }
 function ghRawUrl(path) { return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${path}?t=${Date.now()}`; }
 function ghApiUrl(path) { return `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`; }
 function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
@@ -607,7 +622,7 @@ async function ghReadPublic(path) {
 
 // Authenticated read+sha — needed before any write, so we can PUT with the right sha.
 async function ghReadForWrite(path) {
-  const res = await fetch(ghApiUrl(path), { headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github+json' } });
+  const res = await fetch(ghApiUrl(path), { headers: { Authorization: 'token ' + sessionGithubToken, Accept: 'application/vnd.github+json' } });
   if (res.status === 404) return { sha: null, data: [] };
   if (!res.ok) throw new Error('GitHub read failed (' + res.status + ')');
   const json = await res.json();
@@ -619,7 +634,7 @@ async function ghReadForWrite(path) {
 async function ghWrite(path, data, sha, message) {
   const res = await fetch(ghApiUrl(path).split('?')[0], {
     method: 'PUT',
-    headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    headers: { Authorization: 'token ' + sessionGithubToken, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
       message,
       content: b64EncodeUnicode(JSON.stringify(data, null, 2)),
@@ -751,20 +766,19 @@ async function loadReviews() {
       <div class="review-row-text">${escapeHtml(r.text)}</div>
     </div>`).join('');
 }
-async function submitReview() {
+// Ordinary visitors have no GitHub token, so their reviews can't write to the
+// repo directly. Instead this sends the review to you on WhatsApp — add it to
+// the site yourself afterward from the admin panel's Reviews tab.
+function submitReview() {
   const name = document.getElementById('revName').value.trim();
   const text = document.getElementById('revText').value.trim();
   if (!name || !text || selectedStars === 0) { alert('Please add your name, a star rating, and your review.'); return; }
-  if (!ghReady()) { alert('Reviews aren\'t connected yet — add your GitHub config in the code.'); return; }
-  try {
-    const { sha, data } = await ghReadForWrite(REVIEWS_PATH);
-    data.push({ id: 'r-' + Date.now(), name, rating: selectedStars, text, created_at: new Date().toISOString() });
-    await ghWrite(REVIEWS_PATH, data, sha, `Add review from ${name}`);
-  } catch (e) { alert('Failed to submit review: ' + e.message); return; }
+  const stars = '★'.repeat(selectedStars) + '☆'.repeat(5 - selectedStars);
+  const msg = `New Review — Velmora Store\nName: ${name}\nRating: ${stars}\nReview: ${text}`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   document.getElementById('revName').value = '';
   document.getElementById('revText').value = '';
   document.getElementById('reviewFormWrap').style.display = 'none';
-  loadReviews();
 }
 
 /* ── ADMIN PANEL ── */
@@ -772,6 +786,7 @@ function openAdminPanel() {
   document.getElementById('adminPwScreen').style.display = 'block';
   document.getElementById('adminMainPanel').style.display = 'none';
   document.getElementById('adminPwInput').value = '';
+  document.getElementById('adminTokenInput').value = sessionGithubToken || '';
   document.getElementById('adminOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.getElementById('adminPwInput').focus(), 100);
@@ -783,6 +798,11 @@ function closeAdminPanel() {
 function checkAdminPw() {
   const inp = document.getElementById('adminPwInput');
   if (inp.value === ADMIN_PASSWORD) {
+    const tokenVal = document.getElementById('adminTokenInput').value.trim();
+    if (tokenVal) {
+      sessionGithubToken = tokenVal;
+      sessionStorage.setItem('velmora_gh_token', tokenVal);
+    }
     document.getElementById('adminPwScreen').style.display = 'none';
     document.getElementById('adminMainPanel').style.display = 'block';
     document.getElementById('githubWarn').style.display = ghReady() ? 'none' : 'block';
@@ -797,7 +817,33 @@ function switchAdminTab(tab) {
   document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   if (tab === 'delete') renderDeleteList();
-  if (tab === 'reviews') renderAdminReviewsList();
+  if (tab === 'reviews') { buildAdminStarPicker(); renderAdminReviewsList(); }
+}
+
+let adminSelectedStars = 0;
+function buildAdminStarPicker() {
+  adminSelectedStars = 0;
+  document.getElementById('admStarPicker').innerHTML = [1,2,3,4,5].map(n => `<button type="button" onclick="pickAdminStar(${n})">★</button>`).join('');
+}
+function pickAdminStar(n) {
+  adminSelectedStars = n;
+  document.querySelectorAll('#admStarPicker button').forEach((b,i) => b.classList.toggle('on', i < n));
+}
+async function adminAddReview() {
+  const name = document.getElementById('adm-rev-name').value.trim();
+  const text = document.getElementById('adm-rev-text').value.trim();
+  if (!name || !text || adminSelectedStars === 0) { alert('Fill in name, star rating, and review text.'); return; }
+  if (!ghReady()) { alert('No GitHub token entered for this session.'); return; }
+  try {
+    const { sha, data } = await ghReadForWrite(REVIEWS_PATH);
+    data.push({ id: 'r-' + Date.now(), name, rating: adminSelectedStars, text, created_at: new Date().toISOString() });
+    await ghWrite(REVIEWS_PATH, data, sha, `Add review from ${name}`);
+  } catch (e) { alert('Failed to post review: ' + e.message); return; }
+  document.getElementById('adm-rev-name').value = '';
+  document.getElementById('adm-rev-text').value = '';
+  buildAdminStarPicker();
+  renderAdminReviewsList();
+  loadReviews();
 }
 
 async function addProduct() {
