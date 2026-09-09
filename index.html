@@ -612,12 +612,24 @@ function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str)));
 function b64DecodeUnicode(str) { return decodeURIComponent(escape(atob(str))); }
 
 // Public, unauthenticated read — works with no token as long as the repo is public.
+// Public, unauthenticated read — tries raw.githubusercontent.com first (fast,
+// no rate limit), retries a couple of times on transient errors, then falls
+// back to the api.github.com contents endpoint (different infrastructure —
+// helps when raw's CDN is having a regional outage, e.g. "Backend.max_conn").
 async function ghReadPublic(path) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(ghRawUrl(path), { cache: 'no-store' });
+      if (res.ok) return await res.json();
+    } catch (e) { /* fall through to retry / fallback */ }
+    if (attempt === 0) await new Promise(r => setTimeout(r, 800));
+  }
   try {
-    const res = await fetch(ghRawUrl(path), { cache: 'no-store' });
+    const res = await fetch(ghApiUrl(path), { headers: { Accept: 'application/vnd.github.raw+json' }, cache: 'no-store' });
     if (!res.ok) return [];
-    return await res.json();
-  } catch (e) { console.error('GitHub read failed:', e); return []; }
+    const text = await res.text();
+    return JSON.parse(text);
+  } catch (e) { console.error('GitHub read failed (both raw and API):', e); return []; }
 }
 
 // Authenticated read+sha — needed before any write, so we can PUT with the right sha.
