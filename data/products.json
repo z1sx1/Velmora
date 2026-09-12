@@ -1,17 +1,5 @@
 [
   {
-    "id": "Pathek Philip",
-    "name": "Phatek Philip",
-    "description": "Good Quality 👍",
-    "price": 6000,
-    "discount_price": 4500,
-    "images": [
-      "https://postimg.cc/BjXXDhn7"
-    ],
-    "specs": [],
-    "created_at": "2026-09-12T14:51:39.938Z"
-  },
-  {
     "id": "Fashion",
     "name": "Phatek Philip",
     "description": "Good Quality 👍",
